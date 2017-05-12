@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Angular Employees</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<!--    <li ng-repeat="subject in student.subjects | filter : aGradeFilter">
+              result for: <strong>{{subject.name}}</strong> = <em>{{subject.marks}}</em>
+              {{beatles[1]}} -->
+
+<body ng-controller="employeesController">
+ <div class="jumbotron">
+    <h2> {{4+4}} {{hola}} </h2>
+      </div>
+    <div class="jumbotron">
+        <li ng-repeat="n in beatles">{{n}}</li>
+        <li ng-model="newBeatle in beatles"> {{ newBeatle}}</li>
+    </div>
+
+
+
+    <div class="jumbotron">
+        <select>
+                <li ng-repeat="item in employees">{{item.first_name}} {{item.last_name}}t</li>
+
+            <option ng-repeat="employe in employees">{{employe.first_name}}</option>
+        </select>
+    </div>
+    <form ng-submit="newBeatle()">
+        <p>Enter new Beatle</p>
+        <input>
+        <input type="text" ng-model="newBeatle" placeholder="newBeatle"> {{newBeatle}}
+        <button ng-onClick=" newBeatle"> Ad Beatle </button>
+    </form>
+    <script type="text/javascript">
+    angular.module('mainApp', [])
+
+    .controller('employeesController', function($scope) {
+
+        $scope.hola = 'hola'
+
+        $scope.beatles = ['john', 'paul', 'ringo', 'george'];
+
+        $scope.employees = [{
+            'id': 1,
+            'first_name': 'Karlotta',
+            'last_name': 'Fullegar',
+            'email': 'kcheake0@marketwatch.com',
+            'gender': 'Female',
+            'ip_address': '155.174.243.73'
+        }, {
+            'id': 2,
+            'first_name': 'Griffie',
+            'last_name': "O'Keeffe",
+            'email': 'gkarolczyk1@sourceforge.net',
+            'gender': 'Male',
+            'ip_address': '174.207.93.147'
+        }, {
+            'id': 3,
+            'first_name': 'Briggs',
+            'last_name': 'Gyngyll',
+            'email': 'bmcelane2@fema.gov',
+            'gender': 'Male',
+            'ip_address': '19.164.136.16'
+        }, {
+            'id': 4,
+            'first_name': 'Bancroft',
+            'last_name': 'Ashpole',
+            'email': 'bielden3@jiathis.com',
+            'gender': 'Male',
+            'ip_address': '19.68.128.155'
+        }, {
+            'id': 5,
+            'first_name': 'Merola',
+            'last_name': 'Sleney',
+            'email': 'mfahrenbach4@google.co.jp',
+            'gender': 'Female',
+            'ip_address': '230.169.135.89'
+        }, {
+            'id': 6,
+            'first_name': 'Kelsy',
+            'last_name': 'Coulbeck',
+            'email': 'kferrey5@pbs.org',
+            'gender': 'Female',
+            'ip_address': '102.182.109.224'
+        }, {
+            'id': 7,
+            'first_name': 'Tandie',
+            'last_name': 'Itzkovwitch',
+            'email': 'tsetford6@github.io',
+            'gender': 'Female',
+            'ip_address': '129.101.237.58'
+        }, {
+            'id': 8,
+            'first_name': 'Imogene',
+            'last_name': 'Sorey',
+            'email': 'icollibear7@123-reg.co.uk',
+            'gender': 'Female',
+            'ip_address': '179.225.100.37'
+        }, {
+            'id': 9,
+            'first_name': 'Patricia',
+            'last_name': 'Stieger',
+            'email': 'pcaselli8@1und1.de',
+            'gender': 'Female',
+            'ip_address': '73.187.126.210'
+        }, {
+            'id': 10,
+            'first_name': 'Jimmie',
+            'last_name': 'McNeill',
+            'email': 'jwidmoor9@reuters.com',
+            'gender': 'Male',
+            'ip_address': '243.34.227.172'
+        }]
+
+        // $scope.newBeatle = function() {
+        //     $scope.beatles.push($scope.newBeatles)
+
+        // }
+
+
+        // $scope.addTask = function() {
+        //     $scope.listTasks.push($scope.newTask)
+        //     $scope.newTask = ''
+        // }
+
+
+
+    })
+    </script>
+</body>
+
+</html>

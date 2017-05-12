@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="spotifyApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div ng-controller="spotifyController">
+    <input type="text" ng-model="username">
+    <button ng-click="getReposUser()">Get Repos</button>
+
+
+
+    <select>
+   <option ng-repeat="employe in employees">{{employe.first_name}}</option> 
+
+</select>
+
+    <h2>Repos of {{ profile.name }}</h2>
+    <ul>
+      <li ng-repeat="repo in repos">{{ repo.full_name }}</li>
+    </ul>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/controller.js"></script>
+  <script type="text/javascript" src="js/service.js"></script>
+
+</body>
+</html>

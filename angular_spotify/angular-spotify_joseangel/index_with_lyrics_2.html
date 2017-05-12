@@ -1,0 +1,135 @@
+<!doctype html>
+<html ng-app="spotyFynder">
+
+<head>
+    <title>My SpotiFynder</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body ng-controller="searchArtistController">
+    {{1+1}}
+    <div class="jumbotron container">
+        <div>
+            <h2>Search artist</h2>
+            <input ng-model="artistName" type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+            <button ng-click="findArtist(); $event.preventDefault(); $event.stopPropagation()">Find Artist</button>
+            <p>{{artistName}}</p>
+        </div>
+    </div>
+
+
+    <div class="jumbotron container">
+        <div>
+            <h2>Artists:</h2>
+            <select ng-model=artistSelected ng-change="findAlbum()" name="" id="input" class="form-control" required="required">
+                <option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="jumbotron container">
+        <div>
+            <h2>Albums:</h2>
+            <select ng-model="albumSelected" ng-change="findSong(); findAlbumPicture()" class="form-control" required="required">
+                <option ng-repeat="album in albums" value="{{album.id}}">
+                {{album.name}} {{album.images[0].url}}</option>
+            </select>
+        </div>
+    </div>
+
+
+<img ng-src="{{album.images[0].url}}" alt="">
+
+
+    <div class="jumbotron container">
+        <div>
+            <div class="list-group">
+                <h2>Songs:</h2>
+                <select ng-model="songSelected" ng-change="findLyrics()">
+                    <option ng-repeat="song in songs"> <a href="{{song.preview_url}}" class="list-group-item active">{{song.name}}</a></option>
+                </select>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+        angular.module("spotyFynder", [])
+
+
+        .controller("searchArtistController", function($scope, $http) {
+
+        	var albums
+        	var realartistsName
+            // function find artist
+            $scope.findArtist = function() {
+                    // first url
+                    var urlArtists = "https://api.spotify.com/v1/search?type=artist&query=" + $scope.artistName
+                    console.log($scope.artistName)
+                    console.log(urlArtists)
+                        // ---first call
+                    $http.get(urlArtists)
+                        .then(function(response) {
+                            $scope.artists = response.data.artists.items 
+                          
+                        })
+                }
+
+                // function find album
+
+            $scope.findAlbum = function() {
+                $scope.artistId = $scope.artistSelected
+                console.log($scope.artistId)
+                urlAlbum = 'https://api.spotify.com/v1/artists/' + $scope.artistId + '/albums'
+                console.log(urlAlbum)
+                    // second call
+                $http.get(urlAlbum)
+                    .then(function(response) {
+                    	albums = response.data.items
+                        $scope.albums = albums
+                        $scope.albumPictures = response.data.items
+                        console.log(albums)
+
+                    })
+            }
+
+
+            // third url
+
+            // $scope.findAlbumPicture = function() {
+            //     console.log('test')
+            //     $scope.albumPicture = $scope.coverselected
+            //     console.log($scope.albumPicture)
+            // }
+
+
+            $scope.findSong = function() {
+            
+
+                var idAlbum = $scope.albumSelected
+                console.log($scope.albumSelected)
+
+                console.log(idAlbum)
+                var urlAlbumPicture =
+
+                    urlSongs = 'https://api.spotify.com/v1/albums/' + idAlbum + '/tracks'
+                console.log(urlSongs)
+                $http.get(urlSongs)
+                    .then(function(response) {
+                        $scope.songs = response.data.items
+                        console.log($scope.songs)
+                    })
+
+
+
+
+
+            
+}
+
+        })
+        </script>
+</body>
+
+</html>
